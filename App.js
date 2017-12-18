@@ -9,7 +9,7 @@ import {
   Divider } from 'react-native-elements';
 
 //import { Button } from './src/components/Button';
-//import { CardSection } from './src/components/CardSection';
+import { CardSection } from './src/components/CardSection';
 
 
 class HomeScreen extends React.Component {
@@ -20,36 +20,45 @@ class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
 <View style={{ backgroundColor: 'white', flex: 1 }}>
-<Divider style={{ height: 100, backgroundColor: 'white' }} />
-
-<Text>Sign up as a...</Text>
-<Divider style={{ height: 200, backgroundColor: 'white' }} />
-
-
+<Image
+style={{ flex: 1, height: 100, width: undefined }}
+resizeMode="contain" source={require('./images/practicialogo.png')}
+/>
+<Text style={styles.textStyle}>Sign up as a...</Text>
+<Divider style={{ height: 10, backgroundColor: 'white' }} />
         <Button
         raised
         backgroundColor="#3399ff"
-        borderRadius='20'
+        borderRadius={20}
           onPress={() => navigate('Teacher')}
           title="TEACHER"
         />
-        <Divider style={{ height: 15, backgroundColor: 'white' }} />
+        <Divider style={{ height: 10, backgroundColor: 'white' }} />
 
         <Button
         raised
         backgroundColor="green"
-        borderRadius='20'
+        borderRadius={20}
           onPress={() => navigate('Parent')}
           title="PARENT"
         />
-        <Divider style={{ height: 15, backgroundColor: 'white' }} />
+        <Divider style={{ height: 10, backgroundColor: 'white' }} />
 
         <Button
         raised
         backgroundColor="brown"
-        borderRadius='20'
+        borderRadius={20}
           onPress={() => navigate('Student')}
           title="ADULT STUDENT (18+)"
+        />
+        <Text style={styles.text2Style}>Already Registered?</Text>
+        <Button
+        raised
+        flex='2'
+        backgroundColor="grey"
+        borderRadius={20}
+          onPress={() => navigate('Login')}
+          title="Login"
         />
       </View>
     );
@@ -63,7 +72,8 @@ class TeacherSignUp extends React.Component {
   render() {
     return (
       <View style={{ backgroundColor: 'white', flex: 1 }}>
-        <Text>Sign Up</Text>
+      <Divider style={{ height: 20, backgroundColor: 'white' }} />
+        <Text style={styles.textStyle}>Sign Up</Text>
         <FormLabel>Email</FormLabel>
         <FormInput />
         <FormLabel>Password</FormLabel>
@@ -76,7 +86,7 @@ class TeacherSignUp extends React.Component {
         <Button
         raised
         backgroundColor="brown"
-        borderRadius='0'
+        borderRadius={0}
           // onPress={() => navigate()}
           title="SUBMIT"
         />
@@ -109,12 +119,37 @@ class StudentSignUp extends React.Component {
   }
 }
 
+class Login extends React.Component {
+  static navigationOptions = {
+    title: 'LOGIN',
+  };
+  render() {
+    return (
+      <View style={{ backgroundColor: 'white', flex: 1 }}>
+      <FormLabel>Email/Username</FormLabel>
+      <FormInput />
+      <FormLabel>Password</FormLabel>
+      <FormInput />
+      <Divider style={{ height: 10, backgroundColor: 'white' }} />
+      <Button
+      raised
+      backgroundColor="grey"
+      borderRadius={0}
+        // onPress={() => navigate()}
+        title="SUBMIT"
+      />
+      </View>
+    );
+  }
+}
 
 const SimpleApp = StackNavigator({
   Home: { screen: HomeScreen },
   Teacher: { screen: TeacherSignUp },
   Parent: { screen: ParentSignUp },
-  Student: { screen: StudentSignUp }
+  Student: { screen: StudentSignUp },
+  Login: { screen: Login },
+
 });
 
 export default class App extends React.Component {
@@ -129,61 +164,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center'
-  }
+  },
+  textStyle: {
+    alignSelf: 'center',
+    color: '#617189',
+    fontSize: 20,
+    fontWeight: '600',
+    paddingTop: 10,
+    paddingBottom: 10
+},
+text2Style: {
+  alignSelf: 'center',
+  color: '#617189',
+  fontSize: 14,
+  fontWeight: '300',
+  paddingTop: 10,
+  paddingBottom: 10
+},
+titleText: {
+  fontSize: 20,
+  fontWeight: 'bold',
+},
 });
-
-// import React from 'react';
-// import { StyleSheet, Text, View, Button } from 'react-native';
-// import { StackNavigator } from 'react-navigation';
-//
-// class HomeScreen extends React.Component {
-//   static navigationOptions = {
-//     title: 'WELCOME',
-//     justify: 'center'
-//   };
-//   render() {
-//     const { navigate } = this.props.navigation;
-//     return (
-//       <View>
-//         <Text>Hello, Chat App!</Text>
-//         <Button
-//           onPress={() => navigate('Chat')}
-//           title="Chat with Lucy"
-//         />
-//       </View>
-//     );
-//   }
-// }
-//
-// const SimpleApp = StackNavigator({
-//   Home: { screen: HomeScreen },
-// //     Chat: { screen: ChatScreen },
-// // });
-//
-// // class ChatScreen extends React.Component {
-// //   static navigationOptions = {
-// //     title: 'Chat with Lucy',
-// //   };
-// //   render() {
-// //     return (
-// //       <View>
-// //         <Text>Chat with Lucy</Text>
-// //       </View>
-// //     );
-// //   }
-// // }
-// //
-// export default class App extends React.Component {
-//   render() {
-//     return <SimpleApp />;
-//   }
-// }
-//
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center'
-//   }
-// });
